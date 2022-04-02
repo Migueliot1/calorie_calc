@@ -1,25 +1,46 @@
+import ssl
+import urllib.request, urllib.parse, urllib.error
+from selectorlib import Extractor
+
 class Temperature:
 
-    def __init__(self, city, country):
+    url = 'https://www.timeanddate.com/weather/'
 
-        self.city = city
+    def __init__(self, country, city):
+
         self.country = country
+        self.city = city
 
     def get(self):
 
-        # do the webscrape of city and country to check the weather
+        '''This method extracts current temperature from timeanddate.com/weather 
+        based on passed city and country'''
 
-        return None
+        # Ignore SSL certificate errors
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+
+        url = self.url + self.country + '/' + self.city # Make final URL with country and city
+        html = urllib.request.urlopen(url, context=ctx) # Connect to the created URL
+        data = html.read().decode() # Save all data from URL and decode it from bytes
+
+        extractor = Extractor.from_yaml_file('temperature.yaml') # Extract only the degrees value out of data
+        raw_result = extractor.extract(data)
+
+        result = float(raw_result['temp'].replace("°C", "")) # Remove everything except number and save it
+
+        return result
 
 
-class Calories_Data:
+class Calories:
 
-    def __init__(self, weight, height, age, city, country):
+    def __init__(self, weight, height, age, country, city):
 
         self.weight = weight
         self.height = height
         self.age = age
-        self.temperature = Temperature(city=city, country=country)
+        self.temperature = Temperature(country, city)
 
     def calculate(self):
 
