@@ -14,13 +14,13 @@ class Temperature:
     def get(self):
 
         '''This method extracts current temperature from timeanddate.com/weather 
-        based on passed city and country'''
+        based on instance's country and city values'''
 
         # Ignore SSL certificate errors
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
         ctx.verify_mode = ssl.CERT_NONE
-
+        
         url = self.url + self.country + '/' + self.city # Make final URL with country and city
         html = urllib.request.urlopen(url, context=ctx) # Connect to the created URL
         data = html.read().decode() # Save all data from URL and decode it from bytes
@@ -44,6 +44,9 @@ class Calories:
 
     def calculate(self):
 
-        # put every piece of data into the formula, calculate calories/day amount and return that value
+        '''Put weight, height, age and temperature into the formula 
+        and return calculated calories per day value'''
 
-        return None
+        result = 10 * self.weight + 6.5 * self.height + 5 - self.temperature.get() * 10
+
+        return result
