@@ -69,6 +69,3 @@ class Calories:
         result = 10 * self.weight + 6.5 * self.height + 5 - self.temperature.get() * 10
 
         return result
-
-cl = Calories(70, 180, 25, 'russia', 'moscow')
-print(cl.calculate())
