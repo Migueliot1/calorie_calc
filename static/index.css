@@ -1,0 +1,26 @@
+h2 {
+    color: darkgrey;
+    text-align: center;
+    font-family: "Helvetica", serif;
+    font-size: 50px;
+}
+
+p {
+    text-align: center;
+    font-family: "Helvetica", serif;
+    color: grey;
+    font-size: 25px;
+}
+
+a {
+    display: block;
+    font-family: "Helvetica", serif;
+    text-align: center;
+    color: greenyellow;
+    font-size: 25px;
+}
+
+body {
+    background-color: black;
+    padding: 15px;
+}

@@ -1,0 +1,34 @@
+h2 {
+    color: darkgrey;
+    text-align: center;
+    font-family: "Helvetica", serif;
+    font-size: 50px;
+}
+
+input[type=text] {
+    font-family: "Helvetica", serif;
+    width: 100%;
+    padding: 8px 8px;
+    margin: 10px 0;
+}
+
+form {
+    color: grey;
+    font-family: "Helvetica", serif;
+    font-size: 15px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: yellowgreen;
+    color: grey;
+    font-family: "Helvetica", serif;
+    padding: 12px 12px;
+    border: none;
+    border-radius: 6px;
+}
+
+body {
+    background-color: black;
+    padding: 15px;
+}
