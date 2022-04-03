@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from wtforms import Form, StringField, SubmitField
 from flask import Flask, render_template, request
-from funct import Temperature, Calories
+import funct
 
 app = Flask(__name__)
 
@@ -13,16 +13,28 @@ class HomePage(MethodView):
         return render_template('index.html')
 
 
-class QueryFormPage(MethodView):
+class CalculatorPage(MethodView):
 
     def get(self):
 
-        return render_template('query_form_page.html')
+        query_form = QueryForm()
+        return render_template('calculator.html', query=query_form)
 
 
     def post(self):
 
-        return render_template('query_form_page.html')
+        query = QueryForm(request.form)
+
+        # Create Calories instance
+        cal = funct.Calories(weight=int(query.weight.data),
+                            height=int(query.height.data),
+                            age=int(query.age.data),
+                            country=query.country.data,
+                            city=query.city.data)
+
+        return render_template('calculator.html',
+                                query = query,
+                                calories=cal.calculate())
 
 
 class QueryForm(Form):
@@ -37,6 +49,6 @@ class QueryForm(Form):
 
 
 app.add_url_rule('/', view_func=HomePage.as_view('index'))
-app.add_url_rule('/query', view_func=QueryFormPage.as_view('query_form'))
+app.add_url_rule('/calculator', view_func=CalculatorPage.as_view('calculator'))
 
 app.run(debug=True)

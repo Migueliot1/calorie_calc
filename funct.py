@@ -10,8 +10,8 @@ class Temperature:
     def __init__(self, country, city):
 
         # Replace spaces with '-' for both country and city strings
-        self.country = self.country.replace(' ', '-')
-        self.city = self.city.replace(' ', '-')
+        self.country = country.replace(' ', '-')
+        self.city = city.replace(' ', '-')
 
     def _build_url(self):
 
