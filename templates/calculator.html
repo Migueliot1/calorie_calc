@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="static/calculator.css">
+    </head>
+    <body>
+        <h2>Calculator</h2>
+        <p>Fill in the form and click the button to get result!</p>
+        <form action="/calculator" method="post">
+            {{query.height.label}} {{query.height}}
+            <br>
+            {{query.weight.label}} {{query.weight}}
+            <br>
+            {{query.age.label}} {{query.age}}
+            <br>
+            {{query.country.label}} {{query.country}}
+            <br>
+            {{query.city.label}} {{query.city}}
+            <hr>
+            {{query.button}}
+            <br>
+            {% if query %}
+            The person with such parameters needs to take {{calories}} kcal.
+            {% endif %}
+            <br>
+        </form>
+    </body>
+</html>
