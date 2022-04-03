@@ -34,6 +34,7 @@ class CalculatorPage(MethodView):
 
         return render_template('calculator.html',
                                 query = query,
+                                result = True,
                                 calories=cal.calculate())
 
 
